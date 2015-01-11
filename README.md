@@ -56,3 +56,21 @@ Horizontal alignment, default right
 
 ### vertical
 Vertical alignment, default top
+
+### showOnWindowFocused
+The notification element will show only if the window is on focus, otherwise it will queue and show when focus is restored
+
+### onFocusOutQueue
+Callback when a notification is added to the "out of focus" queue
+
+### appendToTitle
+Append string to browser title
+
+### restoreTitle
+Titles will return to their original content when a notification is hidden
+
+### background
+background CSS property
+
+### color
+color CSS property
