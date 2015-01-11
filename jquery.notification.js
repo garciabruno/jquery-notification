@@ -8,25 +8,27 @@
 
 ;(function($) {
 	$.notificationOptions = {
-		className: '',
-		click: function() {},
 		showOnWindowFocused: false,
-		appendToTitle: '',
 		restoreTitle: true,
-		content: '',
-		title: $('title').html(),
-		duration: 5000,
-		fadeIn: 400,
-		fadeOut: 600,
 		limit: false,
 		queue: false,
+		duration: 5000,
+		fadeOut: 600,
 		slideUp: 200,
+		fadeIn: 400,
+		title: $('title').html(),
 		horizontal: 'right',
+		appendToTitle: '',
 		vertical: 'top',
+		background: '',
+		textColor: '',
+		className: '',
+		content: '',
 		focus_queue: [],
-		afterShow: function(){},
+		onFocusOutQueue: function(){},
 		afterClose: function(){},
-		onFocusOutQueue: function(){}
+		afterShow: function(){},
+		click: function(){}
 	};
 
 	var queue = [];
@@ -36,9 +38,15 @@
 
 		// build notification template
 
+		var elementStyle = [
+			'display: none',
+			'background: ' + options.background || 'url("black-transparency.png") repeat',
+			'color:' + options.color || '#fff'
+		].join(';')
+
 		var htmlElement = $(
 			[
-			'<div class="notification ' + options.className + '" style="display:none">',
+			'<div class="notification ' + options.className + '" style="' + elementStyle + '">',
 				'<div class="close"></div>',
 				options.content,
 			'</div>'
