@@ -11,7 +11,10 @@
 		className: '',
 		click: function() {},
 		showOnWindowFocused: false,
+		appendToTitle: '',
+		restoreTitle: true,
 		content: '',
+		title: $('title').html(),
 		duration: 5000,
 		fadeIn: 400,
 		fadeOut: 600,
@@ -64,6 +67,10 @@
 				$(this).remove();
         		options.afterClose();
 			});
+
+			if (options.appendToTitle && options.restoreTitle){
+				$('title').html(options.title);
+			}
 		};
 
 		// show in board
@@ -74,6 +81,9 @@
 			htmlElement[options.vertical == 'top' ? 'appendTo' : 'prependTo'](board);
 			htmlElement.fadeIn(options.fadeIn, options.afterShow());
 
+			if (options.appendToTitle){
+				$('title').html(options.title + options.appendToTitle);
+			}
 		};
 
 		// set custom click callback
