@@ -10,7 +10,7 @@
 	$.notificationOptions = {
 		className: '',
 		click: function() {},
-    	showOnWindowFocused: false,
+		showOnWindowFocused: false,
 		content: '',
 		duration: 5000,
 		fadeIn: 400,
@@ -20,12 +20,13 @@
 		slideUp: 200,
 		horizontal: 'right',
 		vertical: 'top',
-    	afterShow: function(){},
-    	afterClose: function(){}
+		focus_queue: [],
+		afterShow: function(){},
+		afterClose: function(){},
+		onFocusOutQueue: function(){}
 	};
 
 	var queue = [];
-	var focus_queue = [];
 
 	var Notification = function(board, options) {
 		var that = this;
@@ -142,7 +143,8 @@
 
 		if (options.showOnWindowFocused){
 			if (!document.hasFocus()){
-				focus_queue.push(options);
+				options.focus_queue.push(options);
+				options.onFocusOutQueue();
 				return;
 			}
 		}
@@ -167,11 +169,13 @@
 	};
 
 	window.onfocus = function(){
-		for (i = 0; i < focus_queue.length; i++){
-			$.createNotification(focus_queue[i]);
+		options = $.notificationOptions;
+
+		for (i = 0; i < options.focus_queue.length; i++){
+			$.createNotification(options.focus_queue[i]);
 		}
 
-		focus_queue = [];
+		options.focus_queue = [];
 	}
 
 })(jQuery);
