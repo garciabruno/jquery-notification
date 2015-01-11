@@ -168,14 +168,10 @@
 
 	window.onfocus = function(){
 		for (i = 0; i < focus_queue.length; i++){
-			if (typeof focus_queue[i] != 'undefined'){
-				$.createNotification(focus_queue[i]);
-				delete focus_queue[i];
-			}
-			else{
-				focus_queue.shift();
-			}
+			$.createNotification(focus_queue[i]);
 		}
+
+		focus_queue = [];
 	}
 
 })(jQuery);
