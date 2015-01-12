@@ -4,7 +4,7 @@ A simple and small notification plugin for jQuery.
 
 ## Demo
 
-Check out http://marcojetson.github.com/jquery-notification/
+Check out http://garciabruno.github.com/jquery-notification/
 
 ## Installation
 
